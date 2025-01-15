@@ -332,7 +332,7 @@ end
 
 
 """
-        function colmod(interval::Vector, orders::Vector, ζ::Vector,
+        function colmod(interval::Vector, orders::Vector,, epsilon, epsilon_min ζ::Vector,
           rhs, Drhs,
           bc, Dbc, guess, opt::AbstractOptionsODE)
             -> (sol, retcode, stats)
@@ -383,7 +383,7 @@ end
 
   `rhs` must be a function of the form
 
-      function rhs(t, z, f)
+      function rhs(t, z, f, e)
 
   with the input data: t (scalar) time and z∈ℝᵈ (z=z(x(t))).
   The values of the right-hand side have to be saved in f: f∈ℝⁿ!
@@ -393,7 +393,7 @@ end
 
   `Drhs` must be a function of the form
 
-      function Drhs(t, z, df)
+      function Drhs(t, z, df, ncomp, e)
 
   with the input data: t (scalar) time and z∈ℝᵈ (z=z(x(t))).
   The values of the jacobian of the right-hand side have to be saved
@@ -407,7 +407,7 @@ end
 
   `bc` must be a function of the form
 
-      function bc(i, z, bc)
+      function bc(i, z, bc, e)
 
   with the input data: integer index i and z∈ℝᵈ (z=z(x(t))).
   The scalar(!) value of the i-th side-condition (at time ζ(i)) has to
@@ -417,7 +417,7 @@ end
 
   `Dbc` must be a function of the form
 
-      function Dbc(i, z, dbc)
+      function Dbc(i, z, dbc, e)
 
   with the input data: integer index i and z∈ℝᵈ (z=z(x(t))).
   The  values of the derivative of the i-th side-condition
@@ -542,6 +542,17 @@ end
       ║                 │ to every (time-)grid.                    │         ║
       ║                 │ Every grid contains all values in ζ and  │         ║
       ║                 │ the values in the interval argument.     │         ║
+      ╟─────────────────┼──────────────────────────────────────────┼─────────╢
+      ║ MAXCON          │ the maximum number of continuation steps │      50 ║
+      ║                 │ taken when attempting to solve a         │         ║
+      ║                 │ particular Problem.                      │         ║
+      ╟─────────────────┼──────────────────────────────────────────┼─────────╢
+      ║ ITSAIM          │ used only for nonlinear problems.        │      7  ║
+      ║                 │ The continuation steps Are chosen with   │         ║
+      ║                 │ the aim That the number of newton        │         ║
+      ║                 │ iterations required for convergence on   │         ║
+      ║                 │ The First Mesh, For Each Continuation    │         ║
+      ║                 │ Problem, Is Less Than Or Equal to Itsaim.│         ║
       ╚═════════════════╧══════════════════════════════════════════╧═════════╝
 
   """

@@ -54,7 +54,10 @@
     for mixed order systems using collocation.
     Written by U. Ascher, R. Spiteri, see
     [Coldae Homepage](https://www.netlib.org/ode/coldae.f).
-  # colmod: 
+  * colmod: an automatic continuation fracmework with collocation for solving stiff boundary
+    value problems.
+    Written by R. W. Wright, J. R. Cash, see
+    [Colmod Homepage](https://www.netlib.org/ode/colmod.f).
   * twpbvp: a two-point boundary value problems solver based on mono-implicit runge kutta
     methods and deferred correction.
     Written J.R Cash and M.H. Wright
