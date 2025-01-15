@@ -1,25 +1,7 @@
 using BVPInterface
 @BVPInterface.import_huge
 
-# We look at (again) the boundary value problem (see, ex6.jl)
-#
-#                       sin⁴(x)
-#    ε⋅y'(x) = sin²(x)-λ──────  ;   y(-π/2)=y(π/2)=1
-#                         y
-# 
-# Here ε is given (e.g. ε=0.1) and λ is an unknown parameter.
-#
-# We use bvpm2 and a "homotopy": starting with ε=0.1, using this
-# solution as start-guess for smaller ε.
-
 a, b = -pi/2, pi/2
-
-found_pyplot = true
-try
-  using PyPlot
-catch
-  found_pyplot = false
-end
 
 ε = nothing 
 ε_old = nothing
@@ -46,7 +28,7 @@ function Dbc(ya, yb, dya, dyb, p, dpa, dpb)
   dpb[1,1] = 0.0
 end
 
-opt = OptionsODE("example 7",
+opt = OptionsODE("BVPM2 example",
           OPT_RTOL => 1e-6,
           OPT_METHODCHOICE => 4,)
 xx = collect(LinRange(a,b, 400));

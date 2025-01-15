@@ -56,7 +56,7 @@ function initial_guess(x, z, y, dmz)
     rhs(x, z, y, dmz)
 end
 
-opt = OptionsODE("example 6",
+opt = OptionsODE("COLDAE example",
       OPT_BVPCLASS => 2, OPT_COLLOCATIONPTS => 7,
       OPT_RTOL => [1e-4, 1e-4, 1e-4], OPT_MAXSUBINTERVALS => 200)
 xx = collect(LinRange(a,b, 400));  

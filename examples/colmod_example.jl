@@ -34,7 +34,7 @@ function guess(x, z, dmval, e)
     z[1] = 1.0
 end
 
-opt = OptionsODE("example 6",
+opt = OptionsODE("COLMOD example",
       OPT_BVPCLASS => 1, OPT_COLLOCATIONPTS => 7,
       OPT_RTOL => [1e-8, 1e-4], OPT_MAXSUBINTERVALS => 200)
 xx = collect(LinRange(aleft,aright,400));

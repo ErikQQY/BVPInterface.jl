@@ -4,7 +4,7 @@ using BVPInterface
 ivpopt = OptionsODE("ivpoptions",
 OPT_RHS_CALLMODE => RHS_CALL_INSITU)
 
-opt = OptionsODE("bvp1",
+opt = OptionsODE("BVPSOL example",
 OPT_RHS_CALLMODE => RHS_CALL_INSITU,
 OPT_MAXSTEPS     => 10,
 OPT_RTOL         => 1e-6,

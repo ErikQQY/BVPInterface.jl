@@ -1,28 +1,28 @@
-# This is the build-script for ODEInterface
+# This is the build-script for BVPInterface
 # Its behaviour can be changed by environment variables.
 #
 # This script tries to build die ODE-Libraries for Julia-Versions 
-# between 1.0 and 1.2 (or if ODEINTERFACE_IGNORE_JLL is set).
+# between 1.0 and 1.2 (or if BVPInterface_IGNORE_JLL is set).
 #
 # For Julia-Versions 1.3 or newer the build-script will exit immediately
-# (except if ODEINTERFACE_BUILD_SCRIPT is used or ODEINTERFACE_IGNORE_JLL
-# is set) because the default is to use the ODEInterface_jll.jl package
+# (except if BVPInterface_BUILD_SCRIPT is used or BVPInterface_IGNORE_JLL
+# is set) because the default is to use the BVPInterface_jll.jl package
 # with precompiled libraries.
 #
-# ODEINTERFACE_BUILD_SCRIPT       If set to some filename then nothing is
+# BVPInterface_BUILD_SCRIPT       If set to some filename then nothing is
 #                                 built, but building commands for all the
 #                                 supported OS will be written in this given
 #                                 file. If the filename already exists
 #                                 its content will be overwritten.
 # 
-# ODEINTERFACE_VERBOSE            If set to something non-empty
+# BVPInterface_VERBOSE            If set to something non-empty
 #                                 the build-script will print commands that
 #                                 are used to build the libraries
 #
-# ODEINTERFACE_IGNORE_JLL         If set to something non-empty the build
+# BVPInterface_IGNORE_JLL         If set to something non-empty the build
 #                                 the build-script will try to compile/link
 #                                 the libraries (even if Julia is 1.3 or newer
-#                                 and even if then ODEInterface_jll is
+#                                 and even if then BVPInterface_jll is
 #                                 available).
 
 try
@@ -43,9 +43,9 @@ apple_flag = Sys.isapple()
 apple_silicon_flag = apple_flag && Sys.ARCH === :aarch64
 file_extension = nothing
 obj_files = []
-ignore_jll = read_env("ODEINTERFACE_IGNORE_JLL") != nothing
-verbose = read_env("ODEINTERFACE_VERBOSE") != nothing
-build_script = read_env("ODEINTERFACE_BUILD_SCRIPT")
+ignore_jll = read_env("BVPInterface_IGNORE_JLL") != nothing
+verbose = read_env("BVPInterface_VERBOSE") != nothing
+build_script = read_env("BVPInterface_BUILD_SCRIPT")
 build_script_io = nothing
 
 gfortran = nothing
@@ -57,7 +57,7 @@ end
 
 function search_prog(progname::AbstractString)
   output = ""
-  env_key = string("ODEINTERFACE_",uppercase(progname))
+  env_key = string("BVPInterface_",uppercase(progname))
   if haskey(ENV,env_key)
     output = ENV[env_key]
   else
@@ -202,7 +202,7 @@ function build_bvpsol(path::AbstractString)
     ["bvpsol","linalg_bvpsol","zibconst","ma28_bvpsol"])
   println("\n\n!!! bvpsol: only non commercial use !!!")
   println("Please note: bvpsol's license only covers non commercial use!")
-  println("see using ODEInterface; help_bvpsol_license() for the complete")
+  println("see using BVPInterface; help_bvpsol_license() for the complete")
   println("license text.")
   return nothing
 end
@@ -380,11 +380,11 @@ else
   # to build or not-to-build?
   if VERSION >= v"1.3" && !ignore_jll && !apple_silicon_flag
     # Julia supports Artifacts and we don't build anything and we try
-    # to use ODEInterface_jll
+    # to use BVPInterface_jll
     exit()
   else
     # either Julia version is older than v1.3, we were asked to ignore
-    # ODEInterface_jll or we are on AppleSilicon
+    # BVPInterface_jll or we are on AppleSilicon
     # => in all cases we try to build:
     adapt_to_os()
     build_with_gfortran()
