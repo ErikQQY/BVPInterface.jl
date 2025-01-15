@@ -53,6 +53,12 @@ gfortran -c -fdefault-real-8 -fdefault-double-8 -w -std=legacy -o ./colmod_i32.o
 gfortran -shared -o ./colmod.dll ./colmod.o
 gfortran -shared -o ./colmod_i32.dll ./colmod_i32.o
 
+# colsys
+gfortran -c -fdefault-integer-8 -fdefault-real-8 -fdefault-double-8 -w -std=legacy -o ./colsys.o ./colsys.f
+gfortran -c -fdefault-real-8 -fdefault-double-8 -w -std=legacy -o ./colsys_i32.o ./colsys.f
+gfortran -shared -o ./colsys.dll ./colsys.o
+gfortran -shared -o ./colsys_i32.dll ./colsys_i32.o
+
 # bvpm2
 gfortran -c -fdefault-integer-8 -fdefault-real-8 -fdefault-double-8 -w -std=legacy -o ./bvp_la-2.o ./bvp_la-2.f
 gfortran -c -fdefault-integer-8 -fdefault-real-8 -fdefault-double-8 -std=f2008 -o ./bvp_m-2.o ./bvp_m-2.f90
@@ -115,6 +121,12 @@ gfortran -c -fPIC -fdefault-integer-8 -fdefault-real-8 -fdefault-double-8 -w -st
 gfortran -c -fPIC -fdefault-real-8 -fdefault-double-8 -w -std=legacy -o ./colmod_i32.o ./colmod.f
 gfortran -shared -fPIC -o ./colmod.dylib ./colmod.o
 gfortran -shared -fPIC -o ./colmod_i32.dylib ./colmod_i32.o
+
+# colsys
+gfortran -c -fPIC -fdefault-integer-8 -fdefault-real-8 -fdefault-double-8 -w -std=legacy -o ./colsys.o ./colsys.f
+gfortran -c -fPIC -fdefault-real-8 -fdefault-double-8 -w -std=legacy -o ./colsys_i32.o ./colsys.f
+gfortran -shared -fPIC -o ./colsys.dylib ./colsys.o
+gfortran -shared -fPIC -o ./colsys_i32.dylib ./colsys_i32.o
 
 # bvpm2
 gfortran -c -fPIC -fdefault-integer-8 -fdefault-real-8 -fdefault-double-8 -w -std=legacy -o ./bvp_la-2.o ./bvp_la-2.f
@@ -179,6 +191,11 @@ gfortran -c -fPIC -fdefault-real-8 -fdefault-double-8 -w -std=legacy -o ./colmod
 gfortran -shared -fPIC -o ./colmod.so ./colmod.o
 gfortran -shared -fPIC -o ./colmod_i32.so ./colmod_i32.o
 
+# colsys
+gfortran -c -fPIC -fdefault-integer-8 -fdefault-real-8 -fdefault-double-8 -w -std=legacy -o ./colsys.o ./colsys.f
+gfortran -c -fPIC -fdefault-real-8 -fdefault-double-8 -w -std=legacy -o ./colsys_i32.o ./colsys.f
+gfortran -shared -fPIC -o ./colsys.so ./colsys.o
+gfortran -shared -fPIC -o ./colsys_i32.so ./colsys_i32.o
 
 # bvpm2
 gfortran -c -fPIC -fdefault-integer-8 -fdefault-real-8 -fdefault-double-8 -w -std=legacy -o ./bvp_la-2.o ./bvp_la-2.f

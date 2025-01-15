@@ -58,6 +58,7 @@
     value problems.
     Written by R. W. Wright, J. R. Cash, see
     [Colmod Homepage](https://www.netlib.org/ode/colmod.f).
+  * colsys: 
   * twpbvp: a two-point boundary value problems solver based on mono-implicit runge kutta
     methods and deferred correction.
     Written J.R Cash and M.H. Wright
@@ -123,6 +124,8 @@ macro import_huge()
     @BVPInterface.import_DLcoldae
     @BVPInterface.import_colmod
     @BVPInterface.import_DLcolmod
+    @BVPInterface.import_colsys
+    @BVPInterface.import_DLcolsys
     @BVPInterface.import_bvpm2
     @BVPInterface.import_DLbvpm2
   end
@@ -139,6 +142,7 @@ macro import_normal()
     @BVPInterface.import_colnew
     @BVPInterface.import_coldae
     @BVPInterface.import_colmod
+    @BVPInterface.import_colsys
     @BVPInterface.import_options
     @BVPInterface.import_OPTcommon
   end
@@ -559,8 +563,9 @@ include("./Bvpsol.jl")
 include("./Colnew.jl")
 include("./Coldae.jl")
 include("./Colmod.jl")
+include("./Colsys.jl")
 include("./Bvpm2.jl")
-include("TWPBVP.jl")
+include("./TWPBVP.jl")
 
 include("./Help.jl")
 

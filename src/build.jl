@@ -279,6 +279,17 @@ function build_colmod(path::AbstractString)
   return nothing
 end
 
+function build_colsys(path::AbstractString)
+  build_script_write_headline("colsys")
+  options = Dict(
+    "add_flags_i64" => ["-w", "-std=legacy"],
+    "add_flags_i32" => ["-w", "-std=legacy"],
+  )
+  compile_gfortran(path, "colsys", options)
+  link_gfortran(path, ["colsys",])
+  return nothing
+end
+
 function build_twpbvp(path::AbstractString)
   build_script_write_headline("twpbvp")
   options = Dict(
@@ -287,6 +298,28 @@ function build_twpbvp(path::AbstractString)
   )
   compile_gfortran(path, "twpbvp", options)
   link_gfortran(path, ["twpbvp"])
+  return nothing
+end
+
+function build_musl(path::AbstractString)
+  build_script_write_headline("musl")
+  options = Dict(
+    "add_flags_i64" => ["-w", "-std=legacy"],
+    "add_flags_i32" => ["-w", "-std=legacy"],
+  )
+  compile_gfortran(path, "musl", options)
+  link_gfortran(path, ["musl"])
+  return nothing
+end
+
+function build_musn(path::AbstractString)
+  build_script_write_headline("musn")
+  options = Dict(
+    "add_flags_i64" => ["-w", "-std=legacy"],
+    "add_flags_i32" => ["-w", "-std=legacy"],
+  )
+  compile_gfortran(path, "musn", options)
+  link_gfortran(path, ["musn"])
   return nothing
 end
 
@@ -319,7 +352,10 @@ function build_all(dir_of_src::AbstractString)
   build_colnew(dir_of_src)
   build_coldae(dir_of_src)
   build_colmod(dir_of_src)
+  build_colsys(dir_of_src)
   build_twpbvp(dir_of_src)
+#  build_musl(dir_of_src)
+#  build_musn(dir_of_src)
   build_bvpm2(dir_of_src)
 
   del_obj_files()
