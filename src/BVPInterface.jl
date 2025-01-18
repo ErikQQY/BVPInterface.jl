@@ -96,8 +96,6 @@ module BVPInterface
 using LinearAlgebra
 using Unicode
 
-include("./build.jl")
-
 include("./Error.jl")
 include("./Options.jl")
 include("./DLSolvers.jl")

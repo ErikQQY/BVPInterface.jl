@@ -159,8 +159,7 @@ function loadODESolvers(extrapaths::Vector=AbstractString[],
   if isempty(extrapaths)
     extrapaths = [ @__DIR__ ]
   end
-  apple_silicon = Sys.isapple() && Sys.ARCH === :aarch64
-  use_jll = VERSION >= v"1.3" && !ignore_jll && !apple_silicon
+  use_jll = VERSION >= v"1.3" && !ignore_jll
   if use_jll
     @eval BVPInterface begin
       using BVPInterface_jll
